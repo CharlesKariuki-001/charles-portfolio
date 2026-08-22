@@ -2,6 +2,8 @@ import Hero from "@/components/Hero";
 import Ecosystem from "@/components/Ecosystem";
 import LiveProof from "@/components/LiveProof";
 import Services from "@/components/Services";
+import Story from "@/components/Story";
+import WorkCaseStudies from "@/components/WorkCaseStudies";
 
 export default function Home() {
   return (
@@ -13,6 +15,10 @@ export default function Home() {
       <LiveProof />
 
       <Services />
+
+      <Story />
+
+      <WorkCaseStudies />
     </main>
   );
 }
