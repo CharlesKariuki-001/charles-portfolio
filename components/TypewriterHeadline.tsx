@@ -15,6 +15,7 @@ export default function TypewriterHeadline() {
 
   useEffect(() => {
     const current = taglines[taglineIndex];
+
     const typingSpeed = isDeleting ? 30 : 55;
     const pauseAtFull = 1800;
     const pauseAtEmpty = 400;
@@ -22,15 +23,19 @@ export default function TypewriterHeadline() {
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayText === current) {
-      timeout = setTimeout(() => setIsDeleting(true), pauseAtFull);
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseAtFull);
     } else if (isDeleting && displayText === "") {
       timeout = setTimeout(() => {
         setIsDeleting(false);
-        setTaglineIndex((prev) => (prev + 1) % taglines.length);
+        setTaglineIndex((previous) => (previous + 1) % taglines.length);
       }, pauseAtEmpty);
     } else {
       timeout = setTimeout(() => {
-        const nextLength = displayText.length + (isDeleting ? -1 : 1);
+        const nextLength =
+          displayText.length + (isDeleting ? -1 : 1);
+
         setDisplayText(current.slice(0, nextLength));
       }, typingSpeed);
     }
@@ -39,9 +44,9 @@ export default function TypewriterHeadline() {
   }, [displayText, isDeleting, taglineIndex]);
 
   return (
-    <h1 className="min-h-[4.5rem] font-mono text-2xl text-foreground sm:text-4xl">
+    <h1 className="min-h-18 font-mono text-2xl text-foreground sm:text-4xl">
       {displayText}
-      <span className="ml-1 inline-block w-[2px] h-[1em] align-middle bg-cyan animate-pulse-dot" />
+      <span className="ml-1 inline-block h-[1em] w-0.5 align-middle bg-cyan animate-pulse-dot" />
     </h1>
   );
 }

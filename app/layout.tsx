@@ -18,17 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Charles Kariuki — AI Security Engineer",
   description:
-    "Charles Kariuki builds secure AI systems, fraud detection infrastructure, and network defense systems.",
-  keywords: [
-    "Charles Kariuki",
-    "AI Security Engineer",
-    "Cybersecurity",
-    "Artificial Intelligence",
-    "Fraud Detection",
-    "Network Security",
-    "Kenya",
-  ],
-  authors: [{ name: "Charles Kariuki" }],
+    "AI security engineer building practical AI security, fraud detection, network defense and automation systems.",
 };
 
 export default function RootLayout({

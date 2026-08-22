@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+
 :root {
   --background: #080b0d;
   --background-elevated: #0d1216;
+
   --surface: #11181d;
   --surface-hover: #151e24;
 
@@ -13,17 +18,22 @@
   --border: #202b32;
   --border-hover: #33434d;
 
-  --accent: #22d3ee;
-  --accent-hover: #67e8f9;
-  --accent-soft: rgba(34, 211, 238, 0.08);
-  --accent-border: rgba(34, 211, 238, 0.25);
+  --cyan: #22d3ee;
+  --cyan-hover: #67e8f9;
+  --cyan-soft: rgba(34, 211, 238, 0.08);
+  --cyan-border: rgba(34, 211, 238, 0.25);
+
+  --amber: #fbbf24;
 
   --success: #34d399;
   --warning: #fbbf24;
 
   --nav-height: 72px;
-  --radius-xl: 1rem;
 }
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -41,12 +51,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
-
-::selection {
-  background: var(--accent);
-  color: #061014;
 }
 
 a {
@@ -55,17 +61,122 @@ a {
 }
 
 button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
 a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* =========================================================
+   COLORS USED BY TAILWIND CLASSES
+   ========================================================= */
+
+.bg-background {
+  background-color: var(--background);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-surface-hover {
+  background-color: var(--surface-hover);
+}
+
+.bg-cyan {
+  background-color: var(--cyan);
+}
+
+.bg-amber {
+  background-color: var(--amber);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.text-background {
+  color: var(--background);
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+
+.text-muted {
+  color: var(--foreground-muted);
+}
+
+.text-cyan {
+  color: var(--cyan);
+}
+
+.text-amber {
+  color: var(--amber);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.border-border {
+  border-color: var(--border);
+}
+
+.border-border-hover {
+  border-color: var(--border-hover);
+}
+
+/* =========================================================
+   HOVER STATES
+   ========================================================= */
+
+.hover\:bg-cyan:hover {
+  background-color: var(--cyan);
+}
+
+.hover\:bg-amber:hover {
+  background-color: var(--amber);
+}
+
+.hover\:text-cyan:hover {
+  color: var(--cyan);
+}
+
+.hover\:text-foreground:hover {
+  color: var(--foreground);
+}
+
+.hover\:border-cyan:hover {
+  border-color: var(--cyan);
+}
+
+.hover\:border-border-hover:hover {
+  border-color: var(--border-hover);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
 button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--accent);
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--cyan);
   outline-offset: 4px;
 }
 
-/* Subtle live-status animation */
+/* =========================================================
+   STATUS DOT
+   ========================================================= */
+
 @keyframes pulse-dot {
   0%,
   100% {
@@ -83,7 +194,10 @@ a:focus-visible {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
-/* Slow background movement */
+/* =========================================================
+   AMBIENT EFFECTS
+   ========================================================= */
+
 @keyframes ambient-pulse {
   0%,
   100% {
@@ -99,7 +213,57 @@ a:focus-visible {
   animation: ambient-pulse 8s ease-in-out infinite;
 }
 
-/* Scrollbar */
+@keyframes grid-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(12px, 8px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-grid-drift {
+  animation: grid-drift 18s ease-in-out infinite;
+}
+
+@keyframes soft-glow {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-soft-glow {
+  animation: soft-glow 6s ease-in-out infinite;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--cyan);
+  color: #061014;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) var(--background);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -117,7 +281,18 @@ a:focus-visible {
   background: var(--foreground-muted);
 }
 
-/* Accessibility */
+/* =========================================================
+   SECTION SCROLL OFFSET
+   ========================================================= */
+
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -129,5 +304,19 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  :root {
+    --nav-height: 64px;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 }

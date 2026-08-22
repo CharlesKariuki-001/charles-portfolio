@@ -5,23 +5,21 @@ type StatusBadgeProps = {
 
 const statusStyles = {
   live: {
-    dot: "bg-[var(--success)]",
-    text: "text-[var(--success)]",
+    dot: "bg-cyan",
+    text: "text-cyan",
     animate: true,
   },
-
   building: {
-    dot: "bg-[var(--warning)]",
-    text: "text-[var(--warning)]",
+    dot: "bg-amber",
+    text: "text-amber",
     animate: true,
   },
-
   planned: {
-    dot: "bg-[var(--foreground-muted)]",
-    text: "text-[var(--foreground-muted)]",
+    dot: "bg-muted",
+    text: "text-muted",
     animate: false,
   },
-} as const;
+};
 
 export default function StatusBadge({
   status,
@@ -30,9 +28,8 @@ export default function StatusBadge({
   const style = statusStyles[status];
 
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 font-mono text-xs">
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 font-mono text-xs">
       <span
-        aria-hidden="true"
         className={`h-1.5 w-1.5 rounded-full ${style.dot} ${
           style.animate ? "animate-pulse-dot" : ""
         }`}
