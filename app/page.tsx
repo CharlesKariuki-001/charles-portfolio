@@ -1,5 +1,6 @@
-import Hero from "@/components/Hero";
+import Contact from "@/components/Contact";
 import Ecosystem from "@/components/Ecosystem";
+import Hero from "@/components/Hero";
 import LiveProof from "@/components/LiveProof";
 import Services from "@/components/Services";
 import Story from "@/components/Story";
@@ -19,6 +20,8 @@ export default function Home() {
       <Story />
 
       <WorkCaseStudies />
+
+      <Contact />
     </main>
   );
 }
