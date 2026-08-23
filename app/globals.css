@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* =========================================================
+     COLORS
+     ========================================================= */
+
   --color-background: var(--background);
   --color-background-elevated: var(--background-elevated);
 
@@ -20,11 +24,20 @@
   --color-cyan-border: var(--cyan-border);
 
   --color-amber: var(--amber);
+
   --color-success: var(--success);
   --color-warning: var(--warning);
 
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
+
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+
+  /* =========================================================
+     RADIUS
+     ========================================================= */
 
   --radius-xl: 1rem;
 }
@@ -34,40 +47,67 @@
    ========================================================= */
 
 :root {
-  /* Backgrounds */
+  /* ---------------------------------------------------------
+     Backgrounds
+     --------------------------------------------------------- */
+
   --background: #080b0d;
   --background-elevated: #0d1216;
 
-  /* Surfaces */
+  /* ---------------------------------------------------------
+     Surfaces
+     --------------------------------------------------------- */
+
   --surface: #11181d;
   --surface-hover: #151e24;
 
-  /* Text */
+  /* ---------------------------------------------------------
+     Text
+     --------------------------------------------------------- */
+
   --foreground: #f1f5f7;
   --foreground-soft: #c1cbd1;
   --foreground-muted: #7d8a92;
 
-  /* Borders */
+  /* ---------------------------------------------------------
+     Borders
+     --------------------------------------------------------- */
+
   --border: #202b32;
   --border-hover: #33434d;
 
-  /* Primary accent */
+  /* ---------------------------------------------------------
+     Primary accent
+     --------------------------------------------------------- */
+
   --cyan: #22d3ee;
   --cyan-hover: #67e8f9;
   --cyan-soft: rgba(34, 211, 238, 0.08);
   --cyan-border: rgba(34, 211, 238, 0.25);
 
-  /* Secondary accent */
+  /* ---------------------------------------------------------
+     Secondary accent
+     --------------------------------------------------------- */
+
   --amber: #fbbf24;
 
-  /* Semantic colors */
+  /* ---------------------------------------------------------
+     Semantic colors
+     --------------------------------------------------------- */
+
   --success: #34d399;
   --warning: #fbbf24;
 
-  /* Layout */
+  /* ---------------------------------------------------------
+     Layout
+     --------------------------------------------------------- */
+
   --nav-height: 72px;
 
-  /* Radius */
+  /* ---------------------------------------------------------
+     Radius
+     --------------------------------------------------------- */
+
   --radius-xl: 1rem;
 }
 
@@ -82,11 +122,15 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) var(--background);
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
 
   background:
     radial-gradient(
@@ -111,13 +155,17 @@ body {
 }
 
 /* =========================================================
-   TYPOGRAPHY
+   SELECTION
    ========================================================= */
 
 ::selection {
   background: var(--cyan);
   color: #061014;
 }
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
 
 code,
 pre,
@@ -128,10 +176,18 @@ samp {
     monospace;
 }
 
+/* =========================================================
+   LINKS
+   ========================================================= */
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
 
 button,
 input,
@@ -156,6 +212,34 @@ textarea:focus-visible,
 select:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 4px;
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+   ========================================================= */
+
+/*
+  The custom cursor component handles the visual cursor.
+
+  We only hide the native cursor when the device has a
+  precise pointer such as a mouse or trackpad.
+
+  Touch devices keep their normal system behavior.
+*/
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
 }
 
 /* =========================================================
@@ -221,7 +305,7 @@ select:focus-visible {
 }
 
 /* =========================================================
-   GLOW
+   SOFT GLOW
    ========================================================= */
 
 @keyframes soft-glow {
@@ -243,11 +327,6 @@ select:focus-visible {
    SCROLLBAR
    ========================================================= */
 
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-hover) var(--background);
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -266,7 +345,7 @@ html {
 }
 
 /* =========================================================
-   SMOOTH SECTION SCROLL OFFSET
+   SECTION SCROLL OFFSET
    ========================================================= */
 
 section[id] {
@@ -287,7 +366,9 @@ section[id] {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

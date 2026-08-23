@@ -1,24 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
 import Navbar from "@/components/Navbar";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
+import ScrollProgress from "@/components/ScrollProgress";
+import CustomCursor from "@/components/CustomCursor";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Charles Kariuki — AI Security Engineer",
   description:
-    "AI security engineer building practical AI security, fraud detection, network defense and automation systems.",
+    "Charles Kariuki builds secure AI systems, fraud detection infrastructure, and resilient software for real-world problems.",
 };
 
 export default function RootLayout({
@@ -27,13 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en">
       <body>
+        <ScrollProgress />
+
+        <CustomCursor />
+
         <Navbar />
-        <main>{children}</main>
+
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
       </body>
     </html>
   );
